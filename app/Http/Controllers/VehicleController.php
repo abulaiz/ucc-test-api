@@ -17,7 +17,7 @@ class VehicleController extends Controller
     }
 
     /*
-     * Get list of vehicels
+     * Get list of vehicles
      *
      * @request (GET) : 
      * - keyword = Optional, for search plat number, name, or location
@@ -28,7 +28,7 @@ class VehicleController extends Controller
      * - page = number of page
      */
     public function index(Request $request){
-        $select = DB::table('vehicels')->select('*')->orderBy('created_at', 'desc');
+        $select = DB::table('vehicles')->select('*')->orderBy('created_at', 'desc');
 
         if(!empty($request->get('keyword'))){
             $keyword = $request->get('keyword');
@@ -46,7 +46,7 @@ class VehicleController extends Controller
     }
 
     /*
-	 * Store new vehicel to Database
+	 * Store new vehicle to Database
      */
     public function store(Request $request){
     	$input = $request->all();
@@ -55,7 +55,7 @@ class VehicleController extends Controller
         $engine_powers = $this->vehicle->accepted_engine_power;
 
         $validator = Validator::make($input, [
-        	'plat_number' => 'required|unique:vehicels,plat_number',
+        	'plat_number' => 'required|unique:vehicles,plat_number',
         	'name' => 'required',
         	'engine_displacement' => 'required|numeric',
         	'engine_displacement_unit' => 'required|in:'.implode(',', $engine_displacements),
@@ -75,7 +75,7 @@ class VehicleController extends Controller
 
         try {
         	$input['created_at'] = date('Y-m-d H:i:s');
-        	DB::table('vehicels')->insert($input);
+        	DB::table('vehicles')->insert($input);
         	DB::commit();
 		} catch (\Exception $e) {
 			DB::rollback();
