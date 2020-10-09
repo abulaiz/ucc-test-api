@@ -20,9 +20,10 @@ class CreateVehicleTable extends Migration
             $table->float('engine_displacement');
             $table->string('engine_displacement_unit');
             $table->integer('engine_power');
+            $table->string('engine_power_unit');
             $table->integer('price');
             $table->string('location');
-            $table->timestamps();
+            $table->datetime('created_at');
         });
     }
 
