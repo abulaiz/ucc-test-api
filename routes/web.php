@@ -14,7 +14,16 @@
 */
 $router->group(['prefix' => 'api'], function () use ($router) {
 	$router->group(['prefix' => 'v1'], function () use ($router) {
-		$router->get('vehicle', 'VehicleController@index');
-		$router->post('vehicle', 'VehicleController@store');
+		
+		$router->get('vehicle', [
+			'uses' => 'VehicleController@index',
+			'as' => 'v1.vehicle.index'
+		]);
+
+		$router->post('vehicle', [
+			'uses' => 'VehicleController@store',
+			'as' => 'v1.vehicle.store'
+		]);
+
 	});
 });
