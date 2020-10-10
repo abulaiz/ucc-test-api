@@ -34,8 +34,8 @@ class VehicleController extends Controller
             $keyword = $request->get('keyword');
             $select->where(function($q) use ($keyword) {
                 $q->orWhere('name', 'like', "%$keyword%")
-                  ->orWhere('plat_number', 'like', "$keyword")
-                  ->orWhere('location', 'like', "$keyword");
+                  ->orWhere('plat_number', 'like', "%$keyword%")
+                  ->orWhere('location', 'like', "%$keyword%");
             });
         }
 
