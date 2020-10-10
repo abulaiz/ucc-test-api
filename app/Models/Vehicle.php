@@ -9,7 +9,7 @@ class Vehicle {
     public $accepted_engine_power = ['hoursepower', 'kilowatts'];
 
     public $engine_displacement_alias = [
-        'liters' => 'L', 'centimeters' => 'cm', 'inches' => 'inches'
+        'liters' => 'L', 'centimeters' => 'CC', 'inches' => 'CID'
     ];
 
     public $engine_power_alias = [
