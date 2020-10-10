@@ -25,5 +25,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 			'as' => 'v1.vehicle.store'
 		]);
 
+		$router->get('vehicle/option/{option_type}', 'VehicleController@getOption');
+
 	});
 });

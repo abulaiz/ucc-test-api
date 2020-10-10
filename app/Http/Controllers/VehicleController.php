@@ -85,6 +85,29 @@ class VehicleController extends Controller
 		return response()->json(['success' => true]); 
     }
 
+    /*
+     * Get option for engine displacement or engine power
+     *
+     * @params
+     * - $option_type = must be 'engine_displacement' / 'engine_power'
+     */
+    public function getOption($option_type){
+        if( $option_type != 'engine_displacement' &&  $option_type != 'engine_power')
+            return response()->json([]);
+
+        $list = $this->vehicle->{"accepted_".$option_type};
+        $result = [];
+
+        foreach ($list as $item) {
+            $result[] = [
+                'id' => $item,
+                'text' => ucfirst($item)." (".$this->vehicle->{$option_type."_alias"}[$item].")"
+            ];
+        }
+
+        return response()->json($result);
+    }
+
     private function paginaitonResponse($paginator, $items){
         return [
            "next_page_url" => $paginator->nextPageUrl(),
